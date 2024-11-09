@@ -490,10 +490,36 @@ const contarTexto = (texto) =>{
 
 };
 
-console.log(contarTexto("babilonia"));
+/* console.log(contarTexto("babilonia")); */
+/*19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.*/
 
-/*19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
-20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero. */
+const nombrePropio = (texto) =>{
+    if (!texto) return "Se debe ingresar un texto";
+    if (typeof(texto) != "string") return "El valor ingresado debe ser un texto";
+
+    let comparacion = /^[A-Z][a-z]*(?:[-' ][A-Z][a-z]*)*$/.test(texto); 
+
+    return `El texto ingresado ${texto}, ${comparacion ? 'ES' : 'NO ES'}  un nombre valido`
+
+};
+
+/* console.log(nombrePropio()); */
+
+/*20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero. */
+
+let correoValido = (email) =>{
+        if (!email) return "Se debe ingresar un email";
+        if (typeof(email) != "string") return "El valor ingresado debe ser un texto";
+    
+        let comparacion = /^[\w-_.]+@[\w-_.]+\.[a-z]{2,}$/.test(email);
+    
+        return `El email ingresado ${email}, ${comparacion ? 'ES' : 'NO ES'}  un email valido`
+};
+
+
+/* console.log(correoValido("usuario-52_325@dominio-url.com")); */
+
+
 /* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}. */
