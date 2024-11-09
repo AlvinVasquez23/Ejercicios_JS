@@ -520,8 +520,30 @@ let correoValido = (email) =>{
 /* console.log(correoValido("usuario-52_325@dominio-url.com")); */
 
 
-/* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
-22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+/* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].*/
+
+const arrayAlCuadrado = (lista) =>{
+    if(!lista || !(lista instanceof Array) ) return "Debe ingresar una lista de numeros";
+    if(lista.length === 0) return "La lista no debe estar vacia";
+
+    for ( let i of lista){
+        if (typeof(i) !== 'number') return "La lista solo debe contener numeros";
+    };
+    
+    let nuevaLista = lista.Map( i => i**2 ); 
+
+    return `La lista elevada al cuadrado es la siguiente: ${nuevaLista}`;
+};
+
+console.log(arrayAlCuadrado());
+console.log(arrayAlCuadrado(1545));
+console.log(arrayAlCuadrado("hola"));
+console.log(arrayAlCuadrado([]));
+console.log(arrayAlCuadrado([5]));
+console.log(arrayAlCuadrado([5,10,15]));
+console.log(arrayAlCuadrado([5,10,'15']));
+
+/*22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}. */
 /* 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
 25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
