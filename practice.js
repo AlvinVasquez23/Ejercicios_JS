@@ -617,7 +617,7 @@ const calsificarDatos = (lista) => {
     };
 };
 
-console.log(calsificarDatos(55822));
+/* console.log(calsificarDatos(55822)); */
 
 /*Ejercicio: Clasificación y Manipulación de Cadenas en una Lista
   Escribe una función llamada clasificarYProcesarDatos que reciba una lista de valores mixtos y realice las siguientes tareas:
@@ -688,5 +688,49 @@ const clasificarYProcesarDatos = (lista) =>{
 
 };
 
-console.log(clasificarYProcesarDatos([1, "Alvaro", "beta", 4, null, "Comida", {}, [], "azul", 7, "Bondad"]));
+/* console.log(clasificarYProcesarDatos([1, "Alvaro", "beta", 4, null, "Comida", {}, [], "azul", 7, "Bondad"])); */
 
+/*Ejercicio: Sistema Básico de Inventario de Productos
+Imagina que estás construyendo un sistema simple para gestionar el inventario de una tienda. La función gestionarInventario recibirá una lista de objetos, cada uno representando un producto, y realizará varias operaciones de inventario sobre estos productos.
+
+Detalles del Ejercicio
+Escribe la función gestionarInventario(listaDeProductos). Esta función debe:
+
+1.Validar la entrada:
+-Debe ser un array no vacío y debe contener únicamente objetos con las propiedades nombre (string) y cantidad (número).
+-Si la entrada no es válida, devolver un objeto con {status: false, msg: 'Error: entrada no válida'}.
+
+2.Dividir los productos en categorías:
+-Crear dos listas: una con productos que tienen cantidad > 0 (productos en stock) y otra con productos cuyo cantidad es 0 (productos agotados).
+
+3.Realizar operaciones en las listas:
+-Ordena ambas listas alfabéticamente por el nombre de los productos.
+-Para cada producto en la lista de productos agotados, convierte el nombre a mayúsculas para resaltarlo.
+
+4.Retornar un resumen del inventario:
+-La función debe devolver un objeto con:
+ productosEnStock: lista de productos con cantidad mayor a 0.
+ productosAgotados: lista de productos con cantidad 0 (nombres en mayúsculas).
+ totalProductos: número total de productos en la lista de entrada.
+ totalEnStock: número de productos en stock.
+*/
+
+const gestionarInventarios = (listaProductos) => {
+    if(!(listaProductos instanceof Array)) return {status: false, msg: 'Error: entrada no válida'};
+    if(listaProductos.length === 0) return {status: false, msg: 'Error: la lista no debe estar vacia'};
+    for (let i of listaProductos){
+        if(!(i instanceof Object)) {
+            return {status: false, msg: 'Error: todos los elementos de la lista deben ser objetos'};
+        }else{
+              if(i.hasOwnProperty('nombre') && i.hasOwnProperty('cantidad')){
+                return {status: false, msg: 'Error: la lista no debe estar vacia'}
+            };
+        };
+
+        
+           
+    };
+};
+
+
+console.log(gestionarInventarios([{}]));
