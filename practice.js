@@ -565,3 +565,128 @@ Apartir de un arreglo con la información de 3 películas genera 3
 
 Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
  */
+
+
+//Ejercicios Libres
+
+/*Ejercicio: Clasificación de Datos en una Lista.
+  Escribe una función llamada clasificarDatos que reciba una lista de valores mixtos y los clasifique en tres categorías:
+  Números pares
+  Números impares
+  Otros tipos de datos (todo lo que no sea un número).
+  Especificaciones:
+  1.Validación inicial:
+  -Verifica si la entrada es un arreglo. Si no lo es, retorna un mensaje de error: "Debe proporcionar un arreglo como entrada".
+  -Si el arreglo está vacío, retorna un mensaje de error: "El arreglo no debe estar vacío".
+
+  2.Clasificación de datos:
+  -Si el arreglo contiene valores que no son números, clasifícalos en una lista llamada otros.
+  Para los números, clasifícalos en: pares (si son divisibles por 2) e impares (si no son divisibles por 2).
+
+  3.Formato de retorno:  
+  -La función debe retornar un objeto con las propiedades pares, impares, y otros, cada una conteniendo su respectivo arreglo.
+  -Si alguna de estas categorías está vacía, la propiedad debe tener un arreglo vacío.
+*/
+
+const calsificarDatos = (lista) => {
+    // Validacion inicial
+    if (!(lista instanceof Array)) return {Status: false , Msg:'Debe proporcionar un arreglo como entrada'};
+    if (lista.length === 0) return {Status: false, Msg:'El arreglo no debe estar vacío'};
+
+    let otros  = [];
+    let pares = [];
+    let impares = [];
+
+    //Recorrido de la lista
+    lista.forEach((i) =>{
+        //Validación si es un numero u otro tipo de dato
+        if(typeof(i) !== 'number'){
+            //Adiciona este elemento a la lista de otros
+            otros.push(i)
+        } else{
+            //si es par adiciona a pares sino a impares
+            i % 2 === 0 ? pares.push(i) : impares.push(i); 
+        };
+    });
+
+    //Retorno de la funcion
+    return {
+         pares ,
+         impares,
+         otros
+    };
+};
+
+console.log(calsificarDatos(55822));
+
+/*Ejercicio: Clasificación y Manipulación de Cadenas en una Lista
+  Escribe una función llamada clasificarYProcesarDatos que reciba una lista de valores mixtos y realice las siguientes tareas:
+
+  1.Clasificación de Datos:
+  *Clasifica los elementos en tres categorías:
+   -Números pares: si el elemento es un número y divisible por 2.
+   -Números impares: si el elemento es un número y no es divisible por 2.
+   -Cadenas: si el elemento es una cadena de texto.
+   -Otros tipos de datos: para cualquier otro tipo que no sea número o cadena.
+
+  2.Procesamiento Adicional de Cadenas:
+  -Convierte todas las cadenas a minúsculas.
+  -Filtra las cadenas que contengan la letra “a” y almacénalas en un arreglo llamado contienenA.
+  -Filtra las cadenas que no contengan la letra “a” y almacénalas en un arreglo llamado noContienenA.
+
+  3.Formato de Retorno:
+  La función debe retornar un objeto con las propiedades pares, impares, cadenas, contienenA, noContienenA, y otros, cada una conteniendo su respectivo arreglo.
+  Si alguna de estas categorías está vacía, la propiedad debe contener un arreglo vacío. 
+*/
+
+const clasificarYProcesarDatos = (lista) =>{
+    //Validación del dato ingresado, debe ser una lista
+    if (!(lista instanceof Array)) return {status: false , msg: 'Debe proporcionar un arreglo como entrada'};
+    if (lista.length === 0) return {status: false, msg: 'El arreglo no debe estar vacío'};
+
+    //Se definen los arreglos de salida
+    const pares = [];
+    const impares = [];
+    const textos = [];
+    const textosConA = [];
+    const textosSinA = [];
+    const otros = [];
+
+    //Recorre la lista
+    lista.forEach((i) =>{
+        //define si es un tipo de dato numero
+        if (typeof(i) === 'number'){
+            //evalua si es par o impar y lo agrega a la lista correspondiente
+            i % 2 === 0 
+            ? pares.push(i) 
+            : impares.push(i);
+        //evalua si es un texto  
+        }else if(typeof(i) === 'string'){
+            //lo incluye en el array texto en minusculas
+            textos.push(i.toLowerCase());
+            //evalua sin contiene la letra a
+            i.toLowerCase().includes('a') 
+            //lo agrega a la lista correspondiente
+            ? textosConA.push(i.toLowerCase()) 
+            : textosSinA.push(i.toLowerCase());
+        //lo agrega a la lista otros si no cumple con los citerios anteriores
+        }else{
+            otros.push(i);
+        };
+
+    });
+
+    //retorna las lista con los valores correspondientes
+    return {
+        pares,
+        impares,
+        textos,
+        textosConA,
+        textosSinA,
+        otros
+    };
+
+};
+
+console.log(clasificarYProcesarDatos([1, "Alvaro", "beta", 4, null, "Comida", {}, [], "azul", 7, "Bondad"]));
+
