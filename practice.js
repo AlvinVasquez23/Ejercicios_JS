@@ -715,22 +715,62 @@ Escribe la función gestionarInventario(listaDeProductos). Esta función debe:
  totalEnStock: número de productos en stock.
 */
 
-const gestionarInventarios = (listaProductos) => {
-    if(!(listaProductos instanceof Array)) return {status: false, msg: 'Error: entrada no válida'};
-    if(listaProductos.length === 0) return {status: false, msg: 'Error: la lista no debe estar vacia'};
-    for (let i of listaProductos){
-        if(!(i instanceof Object)) {
-            return {status: false, msg: 'Error: todos los elementos de la lista deben ser objetos'};
-        }else{
-              if(i.hasOwnProperty('nombre') && i.hasOwnProperty('cantidad')){
-                return {status: false, msg: 'Error: la lista no debe estar vacia'}
+    const gestionarInventarios = (listaProductos) => {
+        if(!(listaProductos instanceof Array)) return {status: false, msg: 'Error: entrada no válida'};
+        if(listaProductos.length === 0) return {status: false, msg: 'Error: la lista no debe estar vacia'};
+        for (let i of listaProductos){  
+            if (!('nombre' in i) || !('cantidad' in i)) return {status: false, msg: 'Error: Los objetos deben contener la propiedad nombre y cantidad'};
+            if (typeof(i.nombre) !== 'string' ) return {status: false, msg: 'Error: La propiedad nombre debe ser un texto'};
+            if (typeof(i.cantidad) !== 'number') return {status: false, msg: 'Error: La propiedad cantidad debe ser un numero'};               
+        };
+
+        let productosEnStock = [];
+        let productosAgotados = [];
+        let totalProductos = listaProductos.length;
+        let totalEnStock = 0;
+
+
+
+        for (const element of listaProductos) {
+            if (element.cantidad > 0) {
+                productosEnStock.push(element);
+                totalEnStock ++;
+            }else{
+                productosAgotados.push(element);
             };
         };
 
-        
-           
+        productosEnStock.sort((a,b) => {
+            if (a.nombre > b.nombre){
+                return 1
+            } else if (a.nombre < b.nombre) {
+                return -1
+            }else{
+                return 0
+            }
+        });
+
+        productosAgotados.sort((a,b) => {
+            if (a.nombre > b.nombre){
+                return 1
+            } else if (a.nombre < b.nombre) {
+                return -1
+            }else{
+                return 0
+            }
+        });
+
+            let nuevoProductosAgotados = productosAgotados.map((i)=>{
+                return { ...i, nombre: i.nombre.toUpperCase() };
+            });
+
+        return {
+            productosEnStock,
+            nuevoProductosAgotados,
+            totalProductos,
+            totalEnStock
+        }
+
     };
-};
 
-
-console.log(gestionarInventarios([{}]));
+console.log(gestionarInventarios([{nombre: "manzana", cantidad: 5},{nombre: "banana", cantidad: 0 }, {nombre: "naranja", cantidad: 3 },{nombre: "pera", cantidad: 0 },{nombre: "uvas", cantidad: 10 }]));
