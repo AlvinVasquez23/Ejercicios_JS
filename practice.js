@@ -537,11 +537,82 @@ const arrayAlCuadrado = (lista) =>{
 
 /* console.log(arrayAlCuadrado()); */
 
-/*22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
-23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}. */
-/* 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
-25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
-26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5. */
+/*22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].*/
+
+function numerosOrdenados (lista){
+    
+    let listaOrdenada = lista.sort((a,b)=> a-b)
+    let numeroMenor = listaOrdenada[0];
+    let numeroMayor = listaOrdenada[listaOrdenada.length-1];
+    
+   return ` El munero mayor de la lista es ${numeroMayor} y el numero menor de la lista es ${numeroMenor}`;
+}
+
+/* console.log(numerosOrdenados([1,10,70,-7,3,9])); */
+
+
+/*23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}. */
+
+const separacionNumeros = (lista) => {
+    let pares = [];
+    let impares = [];
+
+    lista.forEach((i)=>{
+        i % 2 === 0 ? pares.push(i) : impares.push(i)
+
+    });
+
+    return {
+        pares,
+        impares
+    };
+};
+
+/* console.log(separacionNumeros([1,2,3,4,5,6,7,8,9,0])); */
+
+/* 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.*/
+
+const ordenamiento = (lista) =>{
+
+    let ascendente = [...lista].sort((a,b) => a-b);
+    let descendente = [...lista].sort((a,b) => b-a);
+
+    return {
+        ascendente,
+        descendente
+    }
+
+};
+
+
+/* console.log(ordenamiento([7,5,7,8,6])); */
+
+/*25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].*/
+
+const valoresUnicos = (lista) =>{
+    let nuevaLista = new Set (lista);
+
+    return nuevaLista;
+};
+
+/* console.log(valoresUnicos(["x", 10, "x", 2, "10", 10, true, true])); */
+
+
+/*26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5. */
+
+const promedio = (lista) => {
+    let total = 0;
+
+    lista.forEach((i)=>{
+        total += i;
+    });
+
+    return `El promedio de la lista es ${total/lista.length}`
+}
+
+/* console.log(promedio([9,8,7,6,5,4,3,2,1,0])); */
+
+
 /* 27) Programa una clase llamada Pelicula.
 
 La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
@@ -773,4 +844,4 @@ Escribe la función gestionarInventario(listaDeProductos). Esta función debe:
 
     };
 
-console.log(gestionarInventarios([{nombre: "manzana", cantidad: 5},{nombre: "banana", cantidad: 0 }, {nombre: "naranja", cantidad: 3 },{nombre: "pera", cantidad: 0 },{nombre: "uvas", cantidad: 10 }]));
+/* console.log(gestionarInventarios([{nombre: "manzana", cantidad: 5},{nombre: "banana", cantidad: 0 }, {nombre: "naranja", cantidad: 3 },{nombre: "pera", cantidad: 0 },{nombre: "uvas", cantidad: 10 }])); */
