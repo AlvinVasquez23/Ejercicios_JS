@@ -638,6 +638,75 @@ Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crim
  */
 
 
+class Pelicula {
+    
+    constructor({idPelicula,titulo,director,anioEstreno,paisOrigen,generos,calificacion}) {
+        this.idPelicula = this.validarId(idPelicula);
+        this.titulo = this.validarTitulo(titulo);
+        this.director = this.validardirector(director);
+        this.anioEstreno = this.validarAnio(anioEstreno);
+        this.paisOrigen = paisOrigen
+        this.generos = generos
+        this.calificacion = calificacion     
+    };
+
+    static generosAceptados(){
+        return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary" ,"Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"]
+    }
+    
+    validarId(idPelicula){
+        const regExp = /^[a-zA-Z]{2}[0-9]{7}$/
+        if (!(regExp.test(idPelicula))) {
+            throw new Error (`El numero de Id ingresado ${idPelicula} no es valido`);
+        };
+        return idPelicula;
+    };
+    
+    validarTitulo(titulo){
+        if (titulo.length >100){
+            throw new Error(`El titulo ${titulo} no puede tener mas de 100 caracteres`)
+        };
+        
+        return titulo;
+        
+    };
+    
+    validardirector(director){
+        if (titulo.length >50){
+            throw new Error(`El nombre del director ${director} no puede tener mas de 50 caracteres`)
+        };
+        
+        return director;
+    };
+    
+    
+    validarAnio(anioEstreno){
+        const regExp = /^[0-9]{4}$/
+        if (!(regExp.test(anioEstreno))) {
+            throw new Error (`El año ingresado ${anioEstreno} no es valido`);
+        };
+        return anioEstreno;
+    };
+    
+    validarPais(paisOrigen){
+        
+        if (!(Array.isArray(paisOrigen))) {
+            throw new Error (`El pais(es) ${paisOrigen} no es valido`);
+        };
+        return paisOrigen;
+    };
+    
+    /* validarGeneros(generos){
+        
+        if (!(Array.isArray(generos))) {
+            throw new Error (`El pais(es) ${generos} no es valido`);
+        }else if{
+            Pelicula.generosAceptados().includes()
+        };
+        return generos;
+    }; */
+};
+
 //Ejercicios Libres
 
 /*Ejercicio: Clasificación de Datos en una Lista.
